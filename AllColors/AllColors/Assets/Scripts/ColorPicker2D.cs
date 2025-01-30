@@ -17,7 +17,23 @@ public class ColorPicker2D : MonoBehaviour
 
     void Update()
     {
-        // Получаем позицию курсора мыши
+#if UNITY_ANDROID
+            if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                GetColor();
+#elif UNITY_IOS
+            if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+                GetColor();
+#else
+        if (Input.GetMouseButtonDown(0))
+        {
+            GetColor();
+        }
+#endif
+    }
+
+    private void GetColor()
+    {
+        
         Vector3 mousePos = renderCamera.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
 
@@ -38,6 +54,5 @@ public class ColorPicker2D : MonoBehaviour
                 pointedColor = Color.black;
             }
         }
-        //Debug.Log(pointedColor);
     }
 }

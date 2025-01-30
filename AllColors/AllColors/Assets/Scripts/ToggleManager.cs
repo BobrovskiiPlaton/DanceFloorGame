@@ -82,45 +82,45 @@ public class ToggleManager : MonoBehaviour
     {
         if (activeToggle == toggleRed)
         {
-            channelMixer.redOutRedIn.value = 200f;
-            channelMixer.redOutGreenIn.value = -200f;
-            channelMixer.redOutBlueIn.value = -200f;
+            channelMixer.redOutRedIn.value = -50f;
+            channelMixer.redOutGreenIn.value = 100f;
+            channelMixer.redOutBlueIn.value = 100;
 
             channelMixer.greenOutRedIn.value = 0f;
-            channelMixer.greenOutGreenIn.value = 200f;
+            channelMixer.greenOutGreenIn.value = 100f;
             channelMixer.greenOutBlueIn.value = 0f;
 
             channelMixer.blueOutRedIn.value = 0f;
             channelMixer.blueOutGreenIn.value = 0f;
-            channelMixer.blueOutBlueIn.value = 200f;
+            channelMixer.blueOutBlueIn.value = 100f;
         }
         else if (activeToggle == toggleGreen)
         {
-            channelMixer.redOutRedIn.value = 200f;
+            channelMixer.redOutRedIn.value = 100f;
             channelMixer.redOutGreenIn.value = 0f;
             channelMixer.redOutBlueIn.value = 0f;
 
-            channelMixer.greenOutRedIn.value = -200f;
-            channelMixer.greenOutGreenIn.value = 200f;
-            channelMixer.greenOutBlueIn.value = -200f;
+            channelMixer.greenOutRedIn.value = 100f;
+            channelMixer.greenOutGreenIn.value = -50f;
+            channelMixer.greenOutBlueIn.value = 100f;
 
             channelMixer.blueOutRedIn.value = 0f;
             channelMixer.blueOutGreenIn.value = 0f;
-            channelMixer.blueOutBlueIn.value = 200f;
+            channelMixer.blueOutBlueIn.value = 100f;
         }
         else if (activeToggle == toggleBlue)
         {
-            channelMixer.redOutRedIn.value = 200f;
+            channelMixer.redOutRedIn.value = 100f;
             channelMixer.redOutGreenIn.value = 0f;
             channelMixer.redOutBlueIn.value = 0f;
 
             channelMixer.greenOutRedIn.value = 0f;
-            channelMixer.greenOutGreenIn.value = 200f;
+            channelMixer.greenOutGreenIn.value = 100f;
             channelMixer.greenOutBlueIn.value = 0f;
 
-            channelMixer.blueOutRedIn.value = -200f;
-            channelMixer.blueOutGreenIn.value = -200f;
-            channelMixer.blueOutBlueIn.value = 200f;
+            channelMixer.blueOutRedIn.value = 100f;
+            channelMixer.blueOutGreenIn.value = 100f;
+            channelMixer.blueOutBlueIn.value = -50f;
         }
         else
         {
