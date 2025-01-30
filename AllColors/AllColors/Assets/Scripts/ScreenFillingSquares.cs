@@ -20,10 +20,13 @@ public class ScreenFillingSquares : MonoBehaviour
     [SerializeField] private Slider timeSlider;
     [SerializeField] private GameObject overScreen;
 
-    private float waitTime = 3f;
+    private float waitTime = 6f;
     private List<GameObject> squares = new List<GameObject>();
     private Color currentColor;
     private bool squaresFloating = false;
+
+    private List<Color> existingColors = new List<Color>();
+    private int difficulty = 4;
 
     void Start()
     {
@@ -36,23 +39,25 @@ public class ScreenFillingSquares : MonoBehaviour
     {
         while (true)
         {
+            _colorPicker2D.pointedColor = Color.black;
+            
             GenerateField();
             UpdateRule();
 
             float elapsedTime = 0f;
-            while (elapsedTime < waitTime)
+            while (elapsedTime < waitTime && _colorPicker2D.pointedColor == Color.black)
             {
                 elapsedTime += Time.deltaTime;
                 timeSlider.value = elapsedTime / waitTime;
                 yield return null;
             }
-            
-            if (currentColor != _colorPicker2D.pointedColor)
+
+            if (_colorPicker2D.pointedColor == Color.black || _colorPicker2D.pointedColor != currentColor)
             {
                 GameOver();
                 yield break;
-                
             }
+
             AddPoint();
             DecreaseTimer();
             DeleteField();
@@ -67,11 +72,14 @@ public class ScreenFillingSquares : MonoBehaviour
 
     private void UpdateRule()
     {
+
         int currentScore = int.Parse(score.text);
-        currentColor = colors[Random.Range(0, colors.Length)];
+        currentColor = existingColors[Random.Range(0, existingColors.Count)];
+        AddDifficulty(currentScore);
+        
         if (currentScore >= 10)
         {
-            squaresFloating = true;
+            //squaresFloating = true;
         }
 
         if (currentScore >= 5)
@@ -87,10 +95,16 @@ public class ScreenFillingSquares : MonoBehaviour
         }
     }
 
+    private void AddDifficulty(int score)
+    {
+        if (score % 3 == 0 && score != 0)
+            difficulty += 1;
+    }
+
     private void DecreaseTimer()
     {
         if (waitTime > 1f)
-            waitTime -= 0.1f;
+            waitTime -= 0.05f;
         else
             waitTime = 1f;
     }
@@ -98,25 +112,33 @@ public class ScreenFillingSquares : MonoBehaviour
     
     void GenerateField()
     {
-        float screenWidth = 2 * Camera.main.orthographicSize * Camera.main.aspect;
-        float screenHeight = 2 * Camera.main.orthographicSize;
-        float squareSize = Mathf.Min(screenWidth, screenHeight) / 10;
+        existingColors.Clear();
+        float gridLength = 8f;
+        float squareSize = Mathf.Round(gridLength / difficulty * 100) / 100;
+        Debug.Log(gridLength + " " + squareSize);
 
-        int squaresX = Mathf.CeilToInt(screenWidth / squareSize);
-        int squaresY = Mathf.CeilToInt(screenHeight / squareSize);
+        int squaresX = Mathf.FloorToInt(gridLength / squareSize);
+        int squaresY = Mathf.FloorToInt(gridLength / squareSize);
+
+        float startX = -gridLength / 2 + (gridLength - squaresX * squareSize) / 2 + squareSize / 2;
+        float startY = -gridLength / 2 + (gridLength - squaresY * squareSize) / 2 + squareSize / 2;
 
         for (int x = 0; x < squaresX; x++)
         {
-            for (int y = 1; y < squaresY - 1; y++)
+            for (int y = 0; y < squaresY; y++)
             {
-                Vector2 position = new Vector2(-screenWidth / 2 + x * squareSize + squareSize / 2, -screenHeight / 2 + y * squareSize + squareSize / 2);
+                Vector2 position = new Vector2(startX + x * squareSize, startY + y * squareSize);
+
                 GameObject newSquare = Instantiate(squarePrefab, position, Quaternion.identity);
                 newSquare.transform.localScale = new Vector3(squareSize, squareSize, 1);
                 squares.Add(newSquare);
-                
+
                 if (newSquare.GetComponent<SpriteRenderer>() != null && colors.Length > 0)
                 {
-                    newSquare.GetComponent<SpriteRenderer>().color = colors[Random.Range(0, colors.Length)];
+                    var newColor = colors[Random.Range(0, colors.Length)];
+                    if(!existingColors.Contains(newColor))
+                        existingColors.Add(newColor);
+                    newSquare.GetComponent<SpriteRenderer>().color = newColor;
                 }
 
                 if (squaresFloating)
@@ -127,6 +149,18 @@ public class ScreenFillingSquares : MonoBehaviour
             }
         }
     }
+
+    private static bool SquareInBoarders(Vector2 position, float squareSize, float screenWidth, float screenHeight)
+    {
+        if (position.x + squareSize / 2 > screenWidth / 2 || position.x - squareSize / 2 < -screenWidth / 2 ||
+            position.y + squareSize / 2 > screenHeight / 2 || position.y - squareSize / 2 < -screenHeight / 2)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     private void DeleteField()
     {
         foreach (GameObject square in squares)

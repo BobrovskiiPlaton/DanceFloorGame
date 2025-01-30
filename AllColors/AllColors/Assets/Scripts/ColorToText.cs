@@ -15,7 +15,7 @@ public class ColorToText : MonoBehaviour
         { new Color(118 / 255f, 0, 36 / 255f, 1), "Maroon" },
         { new Color(214 / 255f, 0, 135 / 255f, 1), "Magenta" },
         { new Color(0, 250 / 255f, 255 / 255f, 1), "Cyan" },
-        { new Color(220 / 255f, 85 / 255f, 255 / 255f, 1), "Lavender" },
+        { new Color(133 / 255f, 0 / 255f, 149 / 255f, 1), "Lavender" },
         { new Color(255 / 255f, 180 / 255f, 129 / 255f, 1), "Peach" },
         { new Color(45 / 255f, 255 / 255f, 0, 1), "Lime" },
     };
