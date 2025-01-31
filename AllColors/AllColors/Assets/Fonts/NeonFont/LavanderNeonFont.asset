@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: NeonFont
+  m_Name: LavanderNeonFont
   m_EditorClassIdentifier: 
-  hashCode: -1697582599
+  hashCode: 735007038
   material: {fileID: 1737068129533699251}
-  materialHashCode: -793503815
+  materialHashCode: 116451166
   m_Version: 1.1.0
   m_SourceFontFileGUID: a24f729f1e2d05d449606c9835192d37
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: a24f729f1e2d05d449606c9835192d37, type: 3}
@@ -2607,26 +2607,26 @@ Material:
     - _ColorMask: 15
     - _CullMode: 0
     - _Diffuse: 0.5
-    - _FaceDilate: 0.1
+    - _FaceDilate: -0.081
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
     - _GlowInner: 1
-    - _GlowOffset: 0.66
+    - _GlowOffset: 0.8
     - _GlowOuter: 1
     - _GlowPower: 1
     - _GradientScale: 6
     - _LightAngle: 3.1416
     - _MaskSoftnessX: 0
     - _MaskSoftnessY: 0
-    - _OutlineSoftness: 0.019
+    - _OutlineSoftness: 0.02
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0
+    - _OutlineWidth: 0.05
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.8333333
-    - _ScaleRatioB: 0.3576807
-    - _ScaleRatioC: 0.59375
+    - _ScaleRatioB: 0.4136574
+    - _ScaleRatioC: 0.7445833
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -2651,9 +2651,9 @@ Material:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
     - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
-    - _GlowColor: {r: 8, g: 0, b: 0, a: 0.50980395}
+    - _GlowColor: {r: 0.52156866, g: 0, b: 0.58431375, a: 1}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 0.52156866, g: 0, b: 0.58431375, a: 1}
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
