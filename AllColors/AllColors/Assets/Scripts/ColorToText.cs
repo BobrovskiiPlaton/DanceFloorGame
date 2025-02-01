@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ColorToText : MonoBehaviour
@@ -30,6 +31,48 @@ public class ColorToText : MonoBehaviour
         {
             return FindClosestColorName(color);
         }
+    }
+
+    public static TMP_FontAsset ColorToFont(Color color)
+    {
+        string fontPath = "Fonts/NeonFont/";
+        switch (FindClosestColorName(color))
+        {
+            case "Red":
+                return Resources.Load<TMP_FontAsset>(fontPath + "RedNeonFont");
+            case "Yellow":
+                return Resources.Load<TMP_FontAsset>(fontPath + "YellowNeonFont");
+            case "Green":
+                return Resources.Load<TMP_FontAsset>(fontPath + "GreenNeonFont");
+            case "Blue":
+                return Resources.Load<TMP_FontAsset>(fontPath + "BlueNeonFont");
+            case "Pink":
+                return Resources.Load<TMP_FontAsset>(fontPath + "PinkNeonFont");
+            case "Violet":
+                return Resources.Load<TMP_FontAsset>(fontPath + "VioletNeonFont");
+            case "Orange":
+                return Resources.Load<TMP_FontAsset>(fontPath + "OrangeNeonFont");
+            case "Maroon":
+                return Resources.Load<TMP_FontAsset>(fontPath + "MaroonNeonFont");
+            case "Magenta":
+                return Resources.Load<TMP_FontAsset>(fontPath + "MagentaNeonFont");
+            case "Cyan":
+                return Resources.Load<TMP_FontAsset>(fontPath + "CyanNeonFont");
+            case "Lavender":
+                return Resources.Load<TMP_FontAsset>(fontPath + "LavenderNeonFont");
+            case "Peach":
+                return Resources.Load<TMP_FontAsset>(fontPath + "PeachNeonFont");
+            case "Lime":
+                return Resources.Load<TMP_FontAsset>(fontPath + "LimeNeonFont");
+            default:
+                return Resources.Load<TMP_FontAsset>(fontPath + "WhiteNeonFont");
+            
+        }
+
+        
+        
+
+
     }
 
     private static string FindClosestColorName(Color color)

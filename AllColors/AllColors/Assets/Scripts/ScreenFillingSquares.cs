@@ -85,13 +85,15 @@ public class ScreenFillingSquares : MonoBehaviour
         if (currentScore >= 5)
         {
             var randomColorName = ColorToText.GetRandomColorName();
-            colorRule.color = currentColor;
+            //colorRule.color = currentColor;
             colorRule.text = randomColorName;
+            colorRule.font = ColorToText.ColorToFont(currentColor);
         }
         else
         {
-            colorRule.color = currentColor;
+            //colorRule.color = currentColor;
             colorRule.text = ColorToText.ColorToName(currentColor);
+            colorRule.font = ColorToText.ColorToFont(currentColor);
         }
     }
 
@@ -114,7 +116,7 @@ public class ScreenFillingSquares : MonoBehaviour
     {
         existingColors.Clear();
         float gridLength = 8f;
-        float squareSize = Mathf.Round(gridLength / difficulty * 100) / 100;
+        float squareSize = Mathf.Round(gridLength / difficulty * 100) / 200;
         Debug.Log(gridLength + " " + squareSize);
 
         int squaresX = Mathf.FloorToInt(gridLength / squareSize);
@@ -149,17 +151,7 @@ public class ScreenFillingSquares : MonoBehaviour
             }
         }
     }
-
-    private static bool SquareInBoarders(Vector2 position, float squareSize, float screenWidth, float screenHeight)
-    {
-        if (position.x + squareSize / 2 > screenWidth / 2 || position.x - squareSize / 2 < -screenWidth / 2 ||
-            position.y + squareSize / 2 > screenHeight / 2 || position.y - squareSize / 2 < -screenHeight / 2)
-        {
-            return true;
-        }
-
-        return false;
-    }
+    
 
     private void DeleteField()
     {
