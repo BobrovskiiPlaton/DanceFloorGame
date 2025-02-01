@@ -35,8 +35,6 @@ public class ToggleManager : MonoBehaviour
 
     void ToggleValueChanged(Toggle changedToggle)
     {
-        volume.enabled = true; // Включаем Volume при изменении состояния Toggle
-
         if (changedToggle.isOn)
         {
             SetTogglesInteractable(false, changedToggle);
@@ -45,10 +43,6 @@ public class ToggleManager : MonoBehaviour
         else
         {
             SetTogglesInteractable(true, null);
-            if (!toggleRed.isOn && !toggleGreen.isOn && !toggleBlue.isOn)
-            {
-                volume.enabled = false; // Отключаем Volume, если все кнопки отжаты
-            }
         }
     }
 

@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 274069855}
   - component: {fileID: 274069854}
   m_Layer: 5
-  m_Name: Score
+  m_Name: Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -510,8 +510,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3922dac1ebafcbf4498b842872f1faeb, type: 2}
+  m_sharedMaterial: {fileID: 1737068129533699251, guid: 3922dac1ebafcbf4498b842872f1faeb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -645,8 +645,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Color
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3922dac1ebafcbf4498b842872f1faeb, type: 2}
+  m_sharedMaterial: {fileID: 1737068129533699251, guid: 3922dac1ebafcbf4498b842872f1faeb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2353,7 +2353,7 @@ GameObject:
   - component: {fileID: 2087260606}
   - component: {fileID: 2087260605}
   m_Layer: 5
-  m_Name: Points
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2401,8 +2401,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Score:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3922dac1ebafcbf4498b842872f1faeb, type: 2}
+  m_sharedMaterial: {fileID: 1737068129533699251, guid: 3922dac1ebafcbf4498b842872f1faeb, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

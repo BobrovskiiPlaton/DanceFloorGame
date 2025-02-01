@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: YellowNeonFont
+  m_Name: PinkNeonFont
   m_EditorClassIdentifier: 
-  hashCode: -295538915
+  hashCode: 1033397701
   material: {fileID: 1737068129533699251}
-  materialHashCode: 317078173
+  materialHashCode: 507296709
   m_Version: 1.1.0
   m_SourceFontFileGUID: a24f729f1e2d05d449606c9835192d37
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: a24f729f1e2d05d449606c9835192d37, type: 3}
@@ -2607,7 +2607,7 @@ Material:
     - _ColorMask: 15
     - _CullMode: 0
     - _Diffuse: 0.5
-    - _FaceDilate: 0
+    - _FaceDilate: -0.3
     - _FaceUVSpeedX: 0
     - _FaceUVSpeedY: 0
     - _GlowInner: 1
@@ -2618,15 +2618,15 @@ Material:
     - _LightAngle: 3.1416
     - _MaskSoftnessX: 0
     - _MaskSoftnessY: 0
-    - _OutlineSoftness: 0.02
+    - _OutlineSoftness: 1
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
     - _OutlineWidth: 0.2
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
-    - _ScaleRatioA: 0.8333333
-    - _ScaleRatioB: 0.4078815
-    - _ScaleRatioC: 0.6770833
+    - _ScaleRatioA: 0.7662835
+    - _ScaleRatioB: 0.5584839
+    - _ScaleRatioC: 0.9270833
     - _ScaleX: 1
     - _ScaleY: 1
     - _ShaderFlags: 0
@@ -2651,9 +2651,9 @@ Material:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _EnvMatrixRotation: {r: 0, g: 0, b: 0, a: 0}
     - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
-    - _GlowColor: {r: 1, g: 0.94509804, b: 0.41960785, a: 1}
+    - _GlowColor: {r: 0.7490196, g: 0.43529412, b: 0.5803922, a: 1}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
-    - _OutlineColor: {r: 0.125, g: 0.11372549, b: 0, a: 1}
+    - _OutlineColor: {r: 1.0039216, g: 0.5803922, b: 0.76862746, a: 1}
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
