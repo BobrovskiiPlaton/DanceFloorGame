@@ -5,18 +5,18 @@ using UnityEngine;
 public class FieldGenerator : MonoBehaviour
 {
     [HideInInspector] public int difficulty = 4;
-    [HideInInspector] public List<Color> existingColors = new List<Color>();
+    [HideInInspector] public List<Figure> figures = new List<Figure>();
     [HideInInspector] public List<GameObject> currentField = new List<GameObject>();
+    
     public Color[] colors;
-
-    public List<GameObject> figures;
+    public List<GameObject> shapes;
 
     
     public void GenerateField()
     {
-        existingColors.Clear();
+        figures.Clear();
         float gridLength = 8f;
-        float prefabSize = Mathf.Round(gridLength / difficulty * 100) / 100;
+        float prefabSize = Mathf.Round(gridLength / Mathf.Min(difficulty, 10) * 100) / 100;
 
         int prefabsX = Mathf.FloorToInt(gridLength / prefabSize);
         int prefabsY = Mathf.FloorToInt(gridLength / prefabSize);
@@ -30,37 +30,36 @@ public class FieldGenerator : MonoBehaviour
             {
                 Vector2 position = new Vector2(startX + x * prefabSize, startY + y * prefabSize);
 
-                GameObject newFigure = Instantiate(figures[Random.Range(0, figures.Count)], position, Quaternion.identity);
-                newFigure.transform.localScale = new Vector3(prefabSize, prefabSize, 1);
-                currentField.Add(newFigure);
-                
-                if (newFigure.name.Contains("Triangle")) // Проверяем имя префаба
-                {
-                    position.y -= prefabSize * 0.2f; // Подберите подходящее значение смещения
-                    newFigure.transform.position = position;
-                }
-                if (newFigure.name.Contains("Hexagon")) // Проверяем имя префаба
-                {
-                    position.y -= prefabSize * 0.05f; // Подберите подходящее значение смещения
-                    newFigure.transform.position = position;
-                }
-                
-                if (newFigure.GetComponent<SpriteRenderer>() != null && colors.Length > 0)
+                GameObject newShape = Instantiate(shapes[Random.Range(0, shapes.Count)], position, Quaternion.identity);
+                newShape.transform.localScale = new Vector3(prefabSize, prefabSize, 1);
+                currentField.Add(newShape);
+
+                AdjustPosition(newShape, position, prefabSize);
+
+                if (newShape.GetComponent<SpriteRenderer>() != null && colors.Length > 0)
                 {
                     var newColor = colors[Random.Range(0, colors.Length)];
-                    if(!existingColors.Contains(newColor))
-                        existingColors.Add(newColor);
-                    newFigure.GetComponent<SpriteRenderer>().color = newColor;
+                    figures.Add(new Figure(newColor, newShape.name));
+                    newShape.GetComponent<SpriteRenderer>().color = newColor;
                 }
-                /*if (squaresFloating)
-                {
-                    Vector2 randomDirection = new Vector2(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f));
-                    newSquare.GetComponent<Rigidbody2D>().velocity = randomDirection;
-                }*/
             }
         }
     }
-    
+
+    private static void AdjustPosition(GameObject newShape, Vector2 position, float prefabSize)
+    {
+        if (newShape.name.Contains("Triangle")) // Проверяем имя префаба
+        {
+            position.y -= prefabSize * 0.2f; // Подберите подходящее значение смещения
+            newShape.transform.position = position;
+        }
+
+        if (newShape.name.Contains("Hexagon")) // Проверяем имя префаба
+        {
+            position.y -= prefabSize * 0.05f; // Подберите подходящее значение смещения
+            newShape.transform.position = position;
+        }
+    }
 
     public void DeleteField()
     {

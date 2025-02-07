@@ -1,11 +1,13 @@
 using TMPro;
 using UnityEngine;
 
-public class ColorPicker2D : MonoBehaviour
+public class Picker : MonoBehaviour
 {
     public Camera renderCamera;
     [HideInInspector]
     public Color pointedColor;
+    [HideInInspector]
+    public string pointedShape;
 
     void Start()
     {
@@ -27,6 +29,7 @@ public class ColorPicker2D : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GetColor();
+            GetShape();
         }
 #endif
     }
@@ -53,6 +56,25 @@ public class ColorPicker2D : MonoBehaviour
             {
                 pointedColor = Color.black;
             }
+        }
+    }
+
+    private void GetShape()
+    {
+        Vector3 mousePos = renderCamera.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0;
+
+        // Проверяем, находится ли курсор над объектом
+        RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+
+        if (hit.collider != null)
+        {
+            pointedShape = hit.collider.name;
+            Debug.Log(pointedShape);
+        }
+        else
+        {
+            pointedShape = "none";
         }
     }
 }
