@@ -11,22 +11,22 @@ using Random = UnityEngine.Random;
 
 public class ClassicMode: MonoBehaviour
 {
-    [SerializeField] private TMP_Text colorRule;
-    [SerializeField] private TMP_Text score;
-    [SerializeField] private Slider timeSlider;
-    [SerializeField] private GameObject overScreen;
+    [SerializeField] protected TMP_Text colorRule;
+    [SerializeField] protected TMP_Text score;
+    [SerializeField] protected Slider timeSlider;
+    [SerializeField] protected GameObject overScreen;
 
-    private float waitTime = 6f;
-    private Color currentColor;
-    private ColorPicker2D _colorPicker2D;
-    private Timer timer;
+    protected float waitTime = 6f;
+    protected Color currentColor;
+    protected Picker picker;
+    protected Timer timer;
     
     public FieldGenerator fieldGenerator;
     public AudioSource scoreAudio;   // Ссылка на источник аудио
     
     void Start()
     {
-        _colorPicker2D = gameObject.AddComponent<ColorPicker2D>();
+        picker = gameObject.AddComponent<Picker>();
         timer = gameObject.AddComponent<Timer>(); // Добавляем таймер как компонент
         timer.OnTimerEnd += GameOver;
         StartCoroutine(CycleRounds());
@@ -34,11 +34,11 @@ public class ClassicMode: MonoBehaviour
     
     
 
-    IEnumerator CycleRounds()
+    protected virtual IEnumerator CycleRounds()
     {
         while (true)
         {
-            _colorPicker2D.pointedColor = Color.black;
+            picker.pointedColor = Color.black;
 
             fieldGenerator.GenerateField();
             UpdateRule();
@@ -47,14 +47,14 @@ public class ClassicMode: MonoBehaviour
             timer.StartTimer(waitTime);
 
             // Ждем, пока таймер работает или игрок выберет цвет
-            while (_colorPicker2D.pointedColor == Color.black)
+            while (picker.pointedColor == Color.black)
             {
                 timeSlider.value = timer.ElapsedTime / timer.Duration; // Обновляем слайдер
                 yield return null;
             }
 
             // Если таймер завершился или игрок выбрал неправильный цвет
-            if (!timer.IsRunning || _colorPicker2D.pointedColor != currentColor)
+            if (!timer.IsRunning || picker.pointedColor != currentColor)
             {
                 GameOver();
                 yield break;
@@ -66,17 +66,17 @@ public class ClassicMode: MonoBehaviour
         }
     }
 
-    private void AddPoint()
+    protected void AddPoint()
     {
         score.text = (int.Parse(score.text) + 1).ToString();
         scoreAudio.Play(); // Воспроизводим звук при наборе очков
     }
 
-    private void UpdateRule()
+    protected virtual void UpdateRule()
     {
 
         int currentScore = int.Parse(score.text);
-        currentColor = fieldGenerator.existingColors[Random.Range(0, fieldGenerator.existingColors.Count)];
+        currentColor = fieldGenerator.figures[Random.Range(0, fieldGenerator.figures.Count)].Color;
         AddDifficulty(currentScore);
         
         if (currentScore >= 10)
@@ -99,13 +99,13 @@ public class ClassicMode: MonoBehaviour
         }
     }
 
-    private void AddDifficulty(int score)
+    protected virtual void AddDifficulty(int score)
     {
         if (score % 3 == 0 && score != 0)
             fieldGenerator.difficulty += 1;
     }
 
-    private void DecreaseTimer()
+    protected void DecreaseTimer()
     {
         if (waitTime > 1f)
             waitTime -= 0.05f;
@@ -114,14 +114,14 @@ public class ClassicMode: MonoBehaviour
     }
 
     
-    private void GameOver()
+    protected void GameOver()
     {
         ShowCorrectColor();
         Time.timeScale = 0f;
         overScreen.SetActive(true);
     }
 
-    private void ShowCorrectColor()
+    protected virtual void ShowCorrectColor()
     {
         foreach (GameObject figure in fieldGenerator.currentField)
         {
