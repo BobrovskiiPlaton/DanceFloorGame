@@ -43,6 +43,7 @@ public class ToggleManager : MonoBehaviour
         else
         {
             SetTogglesInteractable(true, null);
+            ResetChannelMixerSettings(); // Сбрасываем настройки, если все Toggle отключены
         }
     }
 
@@ -78,7 +79,7 @@ public class ToggleManager : MonoBehaviour
         {
             channelMixer.redOutRedIn.value = -50f;
             channelMixer.redOutGreenIn.value = 100f;
-            channelMixer.redOutBlueIn.value = 100;
+            channelMixer.redOutBlueIn.value = 100f;
 
             channelMixer.greenOutRedIn.value = 0f;
             channelMixer.greenOutGreenIn.value = 100f;
@@ -116,16 +117,22 @@ public class ToggleManager : MonoBehaviour
             channelMixer.blueOutGreenIn.value = 100f;
             channelMixer.blueOutBlueIn.value = -50f;
         }
-        else
+    }
+
+    void ResetChannelMixerSettings()
+    {
+        // Проверяем, все ли Toggle отключены
+        if (!toggleRed.isOn && !toggleGreen.isOn && !toggleBlue.isOn)
         {
+            // Сбрасываем настройки ChannelMixer на значения по умолчанию
             channelMixer.redOutRedIn.value = 100f;
             channelMixer.redOutGreenIn.value = 0f;
             channelMixer.redOutBlueIn.value = 0f;
-            
+
             channelMixer.greenOutRedIn.value = 0f;
             channelMixer.greenOutGreenIn.value = 100f;
             channelMixer.greenOutBlueIn.value = 0f;
-            
+
             channelMixer.blueOutRedIn.value = 0f;
             channelMixer.blueOutGreenIn.value = 0f;
             channelMixer.blueOutBlueIn.value = 100f;

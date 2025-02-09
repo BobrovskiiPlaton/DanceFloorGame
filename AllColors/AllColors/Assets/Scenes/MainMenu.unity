@@ -1200,7 +1200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fec1352694a627047a46ec06475aaf2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: MoreShapes
+  sceneToLoad: Shapes
 --- !u!114 &360931523
 MonoBehaviour:
   m_ObjectHideFlags: 0
